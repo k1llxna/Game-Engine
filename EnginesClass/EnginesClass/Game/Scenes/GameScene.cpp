@@ -1,4 +1,5 @@
 #include "GameScene.h"
+#include "../../Engine/Rendering/2D/GUIImageComponent.h"
 
 GameScene::GameScene() : Scene() {}
 
@@ -21,13 +22,17 @@ bool GameScene::OnCreate() {
 
 	Model* model2 = new Model("./Resources/Models/Dice.obj", "./Resources/Materials/Dice.mtl", ShaderHandler::GetInstance()->GetShader("basicShader"));
 	SceneGraph::GetInstance()->AddModel(model2);
-
 	SceneGraph::GetInstance()->AddGameObject(new GameObject(model2));
 
 	GameObject* apple = new GameObject(model1, glm::vec3(4.0f, -1.0f, 0.0f)); // alternative loading
 	apple->SetScale(glm::vec3(0.3f));
 	//apple->AddComponent<Component>();
 	SceneGraph::GetInstance()->AddGameObject(apple, "Apple");
+
+	GuiObject* guiObj = new GuiObject(glm::vec2(CoreEngine::GetInstance()->GetWindowSize().x / 2.0f, CoreEngine::GetInstance()->GetWindowSize().y / 2.0f));
+	guiObj->AddComponent<GUIImageComponent>();
+	guiObj->GetComponent<GUIImageComponent>()->OnCreate("db"); // put png
+	SceneGraph::GetInstance()->AddGuiObject(guiObj, "GuiShader");
 
 	return true;
 }

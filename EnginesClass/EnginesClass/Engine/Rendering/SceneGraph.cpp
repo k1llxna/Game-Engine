@@ -6,8 +6,13 @@ std::map<GLuint, std::vector<Model*>>();
 std::map<std::string, GameObject*> SceneGraph::sceneGameObjects =
 std::map<std::string, GameObject*>();
 
+std::map<std::string, GuiObject*> SceneGraph::guiObjects =
+std::map<std::string, GuiObject*>();
+
 SceneGraph::SceneGraph(){}
-SceneGraph::~SceneGraph(){}
+SceneGraph::~SceneGraph(){
+	OnDestroy();
+}
 
 SceneGraph* SceneGraph::GetInstance()
 {
@@ -25,6 +30,15 @@ void SceneGraph::OnDestroy()
 			delete gameObject.second;
 			gameObject.second = nullptr;
 		}
+		sceneGameObjects.clear();
+	}
+
+	if (guiObjects.size() > 0) {
+		for (auto guiObject : guiObjects) {
+			delete guiObject.second;
+			guiObject.second = nullptr;
+		}
+		guiObjects.clear();
 	}
 
 	if (sceneModels.size() > 0) {
@@ -58,7 +72,6 @@ void SceneGraph::AddGameObject(GameObject* gameObject_, std::string tag_)
 {
 	if (tag_ == "") {
 		std::string newTag = "GameObject" + std::to_string(sceneGameObjects.size() + 1);
-
 		gameObject_->SetTag(newTag);
 		sceneGameObjects[newTag] = gameObject_;
 	}
@@ -76,6 +89,34 @@ void SceneGraph::AddGameObject(GameObject* gameObject_, std::string tag_)
 	}
 
 	CollisionHandler::GetInstance()->AddObject(gameObject_);
+}
+
+void SceneGraph::AddGuiObject(GuiObject* guiObject_, std::string tag_)
+{
+	if (tag_ == "") {
+		std::string newTag = "GuiObject" + std::to_string(guiObjects.size() + 1);
+		guiObject_->SetTag(newTag);
+		guiObjects[newTag] = guiObject_;
+	}
+
+	else if (guiObjects.find(tag_) == guiObjects.end()) {
+		guiObject_->SetTag(tag_);
+		guiObjects[tag_] = guiObject_;
+	}
+
+	else {
+		Debug::Error("Trying to add GuiObject with tag" + tag_ + " that already exists", "SceneGraph.cpp", __LINE__);
+		std::string newTag = "GuiObject" + std::to_string(guiObjects.size() + 1);
+		guiObject_->SetTag(newTag);
+		guiObjects[newTag] = guiObject_;
+	}
+}
+
+GuiObject* SceneGraph::GetGuiObject(std::string tag_) {
+	if (guiObjects.find(tag_) != guiObjects.end()) {
+		return guiObjects[tag_];
+	}
+	return nullptr;
 }
 
 GameObject* SceneGraph::GetGameObject(std::string tag_)
@@ -102,4 +143,17 @@ void SceneGraph::Render(Camera* camera_)
 				m->Render(camera_);
 		}
 	}
+}
+
+void SceneGraph::Draw(Camera* camera_) {
+	glUseProgram(ShaderHandler::GetInstance()->GetShader("GuiShader"));//
+	glDisable(GL_DEPTH_TEST);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	for (auto g : guiObjects) {
+		g.second->Draw(camera_);
+	}
+	glDisable(GL_BLEND);
+	glEnable(GL_DEPTH_TEST);
 }

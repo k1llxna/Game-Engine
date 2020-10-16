@@ -7,9 +7,10 @@
 
 #include "3D/GameObject.h"
 #include "../Math/CollisionHandler.h"
+#include "../Rendering/2D/GuiObject.h"
+#include "../Core/CoreEngine.h"
 
-class SceneGraph
-{
+class SceneGraph {
 public:
 	SceneGraph(const SceneGraph&) = delete;
 	SceneGraph(SceneGraph&&) = delete;
@@ -21,11 +22,15 @@ public:
 	void OnDestroy();
 	void AddModel(Model* model_);
 	void AddGameObject(GameObject* gameObject_, std::string tag_ = "");
+	void AddGuiObject(GuiObject* guiObject_, std::string tag_ = "");
 
 	GameObject* GetGameObject(std::string tag_);
+	GuiObject* GetGuiObject(std::string tag_);
 
 	void Update(const float deltaTime_);
 	void Render(Camera* camera_);
+
+	void Draw(Camera* camera_);
 
 private:
 	SceneGraph();
@@ -36,5 +41,6 @@ private:
 
 	static std::map<GLuint, std::vector<Model*>> sceneModels;
 	static std::map<std::string, GameObject*> sceneGameObjects;
+	static std::map<std::string, GuiObject*> guiObjects;
 };
 #endif

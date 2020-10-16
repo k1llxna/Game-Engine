@@ -122,6 +122,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Audio\AudioSource.cpp" />
+    <ClCompile Include="Engine\Audio\AudioHandler.cpp" />
     <ClCompile Include="Engine\Core\Component.cpp" />
     <ClCompile Include="Engine\Math\CollisionHandler.cpp" />
     <ClCompile Include="Engine\Math\CollisionDetection.cpp" />
@@ -136,6 +138,7 @@
     <ClCompile Include="Engine\FX\LightSource.cpp" />
     <ClCompile Include="Engine\Rendering\3D\LoadOBJModel.cpp" />
     <ClCompile Include="Engine\Rendering\2D\GuiObject.cpp" />
+    <ClCompile Include="Engine\Rendering\2D\GUIImageComponent.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Engine\Core\Window.cpp" />
     <ClCompile Include="Engine\Core\Timer.cpp" />
@@ -153,6 +156,8 @@
     <ClCompile Include="Engine\Rendering\2D\SpriteSurface.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Audio\AudioSource.h" />
+    <ClInclude Include="Engine\Audio\AudioHandler.h" />
     <ClInclude Include="Engine\Core\Component.h" />
     <ClInclude Include="Engine\Math\CollisionHandler.h" />
     <ClInclude Include="Engine\Math\CollisionDetection.h" />
@@ -185,6 +190,8 @@
     <ClInclude Include="Engine\Rendering\3D\RigidBody.h" />
     <ClInclude Include="Engine\Rendering\2D\GuiObject.h" />
     <ClInclude Include="Engine\Rendering\2D\SpriteSurface.h" />
+    <ClInclude Include="Engine\Rendering\2D\GUIComponent.h" />
+    <ClInclude Include="Engine\Rendering\2D\GUIImageComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\Shaders\ColourFragmentShader.glsl" />
@@ -193,6 +200,9 @@
     <None Include="Engine\Shaders\VertexShader.glsl" />
     <None Include="Engine\Shaders\SpriteFragShader.glsl" />
     <None Include="Engine\Shaders\SpriteVertShader.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\Textures\db.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -19,7 +19,6 @@ struct Texture {
 class TextureHandler
 {
 public:
-
 	TextureHandler(const TextureHandler&) = delete;
 	TextureHandler(TextureHandler&&) = delete;
 	TextureHandler& operator=(const TextureHandler&) = delete;
