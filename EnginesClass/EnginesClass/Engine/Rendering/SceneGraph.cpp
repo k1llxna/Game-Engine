@@ -119,16 +119,14 @@ GuiObject* SceneGraph::GetGuiObject(std::string tag_) {
 	return nullptr;
 }
 
-GameObject* SceneGraph::GetGameObject(std::string tag_)
-{
+GameObject* SceneGraph::GetGameObject(std::string tag_) {
 	if (sceneGameObjects.find(tag_) != sceneGameObjects.end()) {
 		return sceneGameObjects[tag_];
 	}
 	return nullptr;
 }
 
-void SceneGraph::Update(const float deltaTime_)
-{
+void SceneGraph::Update(const float deltaTime_) {
 	for (auto go : sceneGameObjects) {
 		go.second->Update(deltaTime_);
 	}

@@ -3,9 +3,9 @@
 
 #include "GUIComponent.h"
 #include "../../Core/Debug.h"
-class GuiObject { // any 2d object
-public:
 
+class GuiObject { // any 2d object, base class
+public:
 	GuiObject(glm::vec2 position_);
 	~GuiObject();
 
@@ -17,17 +17,18 @@ public:
 		A* t = new A();
 		if (dynamic_cast<GUIComponent*>(t)) { // new obj is child of component base class
 			if (GetComponent<A>()) { // check if component type already exists
-				Debug::Info("Failed to add component, component already exists. Deleting component", "GameObject.cpp", __LINE__);
+				Debug::Info("Failed to add component, component already exists. Deleting component", "GuiObject.cpp", __LINE__);
 				delete t;
 				t = nullptr;
 				return;
 			}
 			else if (GetComponent<A>() == nullptr) { // no other type, greenlight
 				guiContainer.push_back(t);
+				Debug::Info("Added component", "GuiObject.cpp", __LINE__);
 			}
 		}
 		else { // not child of comp class
-			Debug::Info("Object is not a child of component. Deleting component", "GameObject.cpp", __LINE__);
+			Debug::Info("Object is not a child of component. Deleting component", "GuiObject.cpp", __LINE__);
 			delete t;
 			t = nullptr;
 			return;
@@ -56,12 +57,11 @@ public:
 	}
 
 private:
-	std::vector<GUIComponent*> guiContainer;
 	glm::vec2 position;
 	std::string tag;
+	std::vector<GUIComponent*> guiContainer;
 };
 #endif
-
 // image animation textcomponents<spriteObject(opengl)>
 // hud, menu
 // gui - orhtographic vs gameobject - perspective

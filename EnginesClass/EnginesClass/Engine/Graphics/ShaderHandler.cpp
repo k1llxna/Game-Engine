@@ -69,9 +69,7 @@ void ShaderHandler::OnDestroy() {
 	programs.clear();
 }
 
-ShaderHandler::ShaderHandler() {
-
-}
+ShaderHandler::ShaderHandler() {}
 
 ShaderHandler::~ShaderHandler() {
 	if (shaderInstance == nullptr) {

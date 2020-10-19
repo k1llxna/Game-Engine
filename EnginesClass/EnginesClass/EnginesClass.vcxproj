@@ -152,7 +152,6 @@
     <ClCompile Include="Engine\FX\MaterialLoader.cpp" />
     <ClCompile Include="Engine\Graphics\MaterialHandler.cpp" />
     <ClCompile Include="Engine\Math\OctSpacialPartition.cpp" />
-    <ClCompile Include="Engine\Rendering\3D\RigidBody.cpp" />
     <ClCompile Include="Engine\Rendering\2D\SpriteSurface.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -187,7 +186,6 @@
     <ClInclude Include="Engine\FX\MaterialLoader.h" />
     <ClInclude Include="Engine\Graphics\MaterialHandler.h" />
     <ClInclude Include="Engine\Math\OctSpacialPartition.h" />
-    <ClInclude Include="Engine\Rendering\3D\RigidBody.h" />
     <ClInclude Include="Engine\Rendering\2D\GuiObject.h" />
     <ClInclude Include="Engine\Rendering\2D\SpriteSurface.h" />
     <ClInclude Include="Engine\Rendering\2D\GUIComponent.h" />

@@ -29,11 +29,13 @@ bool GameScene::OnCreate() {
 	//apple->AddComponent<Component>();
 	SceneGraph::GetInstance()->AddGameObject(apple, "Apple");
 
+
+	// gui
 	GuiObject* guiObj = new GuiObject(glm::vec2(CoreEngine::GetInstance()->GetWindowSize().x / 2.0f, CoreEngine::GetInstance()->GetWindowSize().y / 2.0f));
 	guiObj->AddComponent<GUIImageComponent>();
-	guiObj->GetComponent<GUIImageComponent>()->OnCreate("db"); // put png
+	guiObj->GetComponent<GUIImageComponent>()->OnCreate("db.png"); // put png
 	SceneGraph::GetInstance()->AddGuiObject(guiObj, "GuiShader");
-
+	// , glm::vec2(1.0f,1.0f), glm::vec2(1.0f,1.0f), 0.0f, glm::vec4(1.0f,1.0f,1.0f,1.0f)
 	return true;
 }
 

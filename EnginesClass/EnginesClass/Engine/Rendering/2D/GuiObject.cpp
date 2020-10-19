@@ -1,4 +1,5 @@
 #include "GuiObject.h"
+#include "../../Camera/Camera.h"
 
 GuiObject::GuiObject(glm::vec2 position_) {
 	position = position_;

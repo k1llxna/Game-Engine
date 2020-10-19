@@ -41,5 +41,4 @@ private:
 
 	void GenerateBuffers();
 };
-
 #endif // !SPRITESURFACE_H

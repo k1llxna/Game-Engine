@@ -13,7 +13,7 @@ public:
 	void Render(Camera* camera_);
 	void Update(float deltaTime_);
 
-	glm::vec3 GetPosition() const; // const so its not tamped with***
+	glm::vec3 GetPosition() const; 
 	float GetAngle() const;
 	glm::vec3 GetRotation() const;
 	glm::vec3 GetScale() const;
