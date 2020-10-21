@@ -2,4 +2,4 @@
 [INFO]: Everything worked! in: CoreEngine.cpp on line: 52
 [INFO]: Creating Game Scene in: GameScene.cpp on line: 12
 [INFO]: Added component in: GuiObject.cpp on line: 27
-[ERROR]: Surface for texture db.png failed to be created in: TextureHandler.cpp on line: 43
+[INFO]: Component added in: GuiObject.cpp on line: 37

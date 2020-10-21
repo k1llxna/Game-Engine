@@ -124,7 +124,6 @@
   <ItemGroup>
     <ClCompile Include="Engine\Audio\AudioSource.cpp" />
     <ClCompile Include="Engine\Audio\AudioHandler.cpp" />
-    <ClCompile Include="Engine\Core\Component.cpp" />
     <ClCompile Include="Engine\Math\CollisionHandler.cpp" />
     <ClCompile Include="Engine\Math\CollisionDetection.cpp" />
     <ClCompile Include="Engine\Camera\Camera.cpp" />

@@ -1,4 +1,5 @@
 #include "GUIImageComponent.h"
+#include "SpriteSurface.h"
 
 GUIImageComponent::GUIImageComponent() {
 	sprite = NULL;

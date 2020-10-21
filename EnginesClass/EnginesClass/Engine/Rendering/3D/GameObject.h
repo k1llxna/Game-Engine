@@ -32,6 +32,7 @@ public:
 	template<typename A>
 	void AddComponent() {
 		A* t = new A();
+		Debug::Info("Instance created", "GameObject.cpp", __LINE__);
 		if (dynamic_cast<Component*>(t)) { // new obj is child of component base class
 			if (GetComponent<A>()) { // check if component type already exists
 				Debug::Info("Failed to add component, component already exists. Deleting component", "GameObject.cpp", __LINE__);
@@ -42,6 +43,7 @@ public:
 			else if (GetComponent<A>() == nullptr) { // no other type, greenlight
 				objects.push_back(t);
 				t->OnCreate(this);
+				Debug::Info("Added component", "GameObject.cpp", __LINE__);
 			}
 		}
 		else { // not child of comp class

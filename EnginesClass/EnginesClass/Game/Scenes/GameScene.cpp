@@ -20,11 +20,12 @@ bool GameScene::OnCreate() {
 	Model* model1 = new Model("./Resources/Models/Apple.obj","./Resources/Materials/Apple.mtl" , ShaderHandler::GetInstance()->GetShader("basicShader"));
 	SceneGraph::GetInstance()->AddModel(model1);
 
-	Model* model2 = new Model("./Resources/Models/Dice.obj", "./Resources/Materials/Dice.mtl", ShaderHandler::GetInstance()->GetShader("basicShader"));
-	SceneGraph::GetInstance()->AddModel(model2);
-	SceneGraph::GetInstance()->AddGameObject(new GameObject(model2));
+	Model* dice = new Model("./Resources/Models/Dice.obj", "./Resources/Materials/Dice.mtl", ShaderHandler::GetInstance()->GetShader("basicShader"));
+	SceneGraph::GetInstance()->AddModel(dice);
+	SceneGraph::GetInstance()->AddGameObject(new GameObject(dice));
+	dice->SetPosition(glm::vec3(-5.0f, -2.0f, 0.0f));
 
-	GameObject* apple = new GameObject(model1, glm::vec3(4.0f, -1.0f, 0.0f)); // alternative loading
+	GameObject* apple = new GameObject(model1, glm::vec3(3.0f, -2.0f, 0.0f)); // alternative loading
 	apple->SetScale(glm::vec3(0.3f));
 	//apple->AddComponent<Component>();
 	SceneGraph::GetInstance()->AddGameObject(apple, "Apple");
@@ -33,9 +34,11 @@ bool GameScene::OnCreate() {
 	// gui
 	GuiObject* guiObj = new GuiObject(glm::vec2(CoreEngine::GetInstance()->GetWindowSize().x / 2.0f, CoreEngine::GetInstance()->GetWindowSize().y / 2.0f));
 	guiObj->AddComponent<GUIImageComponent>();
-	guiObj->GetComponent<GUIImageComponent>()->OnCreate("db.png"); // put png
+	Debug::Info("Component added", "GuiObject.cpp", __LINE__);
+	guiObj->GetComponent<GUIImageComponent>()->OnCreate("db"); // name of png
 	SceneGraph::GetInstance()->AddGuiObject(guiObj, "GuiShader");
 	// , glm::vec2(1.0f,1.0f), glm::vec2(1.0f,1.0f), 0.0f, glm::vec4(1.0f,1.0f,1.0f,1.0f)
+	
 	return true;
 }
 
@@ -50,7 +53,9 @@ void GameScene::Render() {
 	SceneGraph::GetInstance()->Render(CoreEngine::GetInstance()->GetCamera());
 }
 
-void GameScene::Draw() {}
+void GameScene::Draw() {
+	SceneGraph::GetInstance()->Draw(CoreEngine::GetInstance()->GetCamera());
+}
 
 // old models
 /*v.position = glm::vec3(-0.5f, 0.7f, 0.0f);

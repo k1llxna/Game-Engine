@@ -7,7 +7,6 @@ Game1::~Game1(){
 	currentScene = nullptr;
 }
 
-
 bool Game1::OnCreate() {
 	if (CoreEngine::GetInstance()->GetCurrentScene() == 0) { //
 		currentScene = new StartScene();

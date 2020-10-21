@@ -90,9 +90,6 @@
     <ClCompile Include="Engine\Math\OctSpacialPartition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Core\Component.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Rendering\2D\GuiObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
