@@ -27,8 +27,8 @@ bool GameScene::OnCreate() {
 
 	GameObject* apple = new GameObject(model1, glm::vec3(3.0f, -2.0f, 0.0f)); // alternative loading
 	apple->SetScale(glm::vec3(0.3f));
-	//apple->AddComponent<Component>();
 	SceneGraph::GetInstance()->AddGameObject(apple, "Apple");
+	//apple->AddComponent<Component>();
 
 
 	// gui

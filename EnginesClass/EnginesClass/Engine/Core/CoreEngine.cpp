@@ -37,7 +37,7 @@ bool CoreEngine::OnCreate(std::string name_, int width_, int height_) {
 	ShaderHandler::GetInstance()->CreateProgram("basicShader", "Engine/Shaders/VertexShader.glsl", "Engine/Shaders/FragmentShader.glsl");
 
 	// GUI shader (for 2D objects)
-	ShaderHandler::GetInstance()->CreateProgram("spriteColourShader", "EngineShaders/Shader/SpriteVertShader.glsl", "Engine/Shaders/SpriteFragShader.glsl");
+	ShaderHandler::GetInstance()->CreateProgram("spriteColourShader", "Engine/Shaders/SpriteVertShader.glsl", "Engine/Shaders/SpriteFragShader.glsl");
 
 	// create interface, make sure it has been set
 	if (gameInterface) { // gameInterface != nullptr // because its a ptr
