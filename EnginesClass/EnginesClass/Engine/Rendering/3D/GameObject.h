@@ -29,8 +29,8 @@ public:
 
 	BoundingBox GetBoundingBox();
 
-	template<typename A>
-	void AddComponent() {
+	template<typename A, typename Args>
+	void AddComponent(Args&&) { // std::forward<Args>(args_)
 		A* t = new A();
 		Debug::Info("Instance created", "GameObject.cpp", __LINE__);
 		if (dynamic_cast<Component*>(t)) { // new obj is child of component base class
@@ -89,5 +89,6 @@ private:
 	bool hit;
 
 	std::vector<Component*> objects;
+	
 };
 #endif

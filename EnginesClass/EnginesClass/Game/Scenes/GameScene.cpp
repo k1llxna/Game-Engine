@@ -1,6 +1,7 @@
 #include "GameScene.h"
 #include "../../Engine/Rendering/2D/GUIImageComponent.h"
 
+
 GameScene::GameScene() : Scene() {}
 
 GameScene::~GameScene()
@@ -11,12 +12,15 @@ GameScene::~GameScene()
 bool GameScene::OnCreate() {
 	Debug::Info("Creating Game Scene", "GameScene.cpp", __LINE__);
 
+	//Camera
 	CoreEngine::GetInstance()->SetCamera(new Camera);
 	CoreEngine::GetInstance()->GetCamera()->SetPosition(glm::vec3(0.0f, 2.0f, 7.0f)); // set pos (account near plane)
 	CoreEngine::GetInstance()->GetCamera()->AddLightSource(new LightSource(glm::vec3(0.0f, 4.0f, 3.0f), glm::vec3(1.0f, 1.0f, 1.0f), 0.1f, 0.8f));
 	
-	CollisionHandler::GetInstance()->OnCreate(100.0f);
+	// Audio
+	
 
+	CollisionHandler::GetInstance()->OnCreate(100.0f);
 	Model* model1 = new Model("./Resources/Models/Apple.obj","./Resources/Materials/Apple.mtl" , ShaderHandler::GetInstance()->GetShader("basicShader"));
 	SceneGraph::GetInstance()->AddModel(model1);
 
@@ -29,12 +33,12 @@ bool GameScene::OnCreate() {
 	apple->SetScale(glm::vec3(0.3f));
 	SceneGraph::GetInstance()->AddGameObject(apple, "Apple");
 	//apple->AddComponent<Component>();
+	
 
 
 	// gui
-	GuiObject* guiObj = new GuiObject(glm::vec2(CoreEngine::GetInstance()->GetWindowSize().x / 2.0f, CoreEngine::GetInstance()->GetWindowSize().y / 2.0f));
+	GuiObject* guiObj = new GuiObject(glm::vec2(CoreEngine::GetInstance()->GetWindowSize().x / 1.0f, CoreEngine::GetInstance()->GetWindowSize().y / 1.0f));
 	guiObj->AddComponent<GUIImageComponent>();
-	Debug::Info("Component added", "GuiObject.cpp", __LINE__);
 	guiObj->GetComponent<GUIImageComponent>()->OnCreate("db"); // name of png
 	SceneGraph::GetInstance()->AddGuiObject(guiObj, "GuiShader");
 	// , glm::vec2(1.0f,1.0f), glm::vec2(1.0f,1.0f), 0.0f, glm::vec4(1.0f,1.0f,1.0f,1.0f)
@@ -45,7 +49,6 @@ bool GameScene::OnCreate() {
 void GameScene::Update(const float deltaTime_) {
 	// std::cout << deltaTime_ << std::endl;
 	SceneGraph::GetInstance()->Update(deltaTime_);
-	//compSystem->Update(deltaTime_);
 }
 
 void GameScene::Render() {

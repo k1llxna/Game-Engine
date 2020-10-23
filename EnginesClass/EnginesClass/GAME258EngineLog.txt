@@ -2,4 +2,3 @@
 [INFO]: Everything worked! in: CoreEngine.cpp on line: 52
 [INFO]: Creating Game Scene in: GameScene.cpp on line: 12
 [INFO]: Added component in: GuiObject.cpp on line: 27
-[INFO]: Component added in: GuiObject.cpp on line: 37

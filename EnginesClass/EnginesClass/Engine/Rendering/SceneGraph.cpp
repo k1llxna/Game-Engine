@@ -92,7 +92,7 @@ void SceneGraph::AddGameObject(GameObject* gameObject_, std::string tag_)
 }
 
 void SceneGraph::AddGuiObject(GuiObject* guiObject_, std::string tag_)
-{
+{ // map
 	if (tag_ == "") {
 		std::string newTag = "GuiObject" + std::to_string(guiObjects.size() + 1);
 		guiObject_->SetTag(newTag);
@@ -144,7 +144,7 @@ void SceneGraph::Render(Camera* camera_)
 }
 
 void SceneGraph::Draw(Camera* camera_) {
-	glUseProgram(ShaderHandler::GetInstance()->GetShader("GuiShader"));//
+	glUseProgram(ShaderHandler::GetInstance()->GetShader("spriteColourShader"));//
 	glDisable(GL_DEPTH_TEST);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

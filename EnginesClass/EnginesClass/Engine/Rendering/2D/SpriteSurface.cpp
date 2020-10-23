@@ -83,11 +83,11 @@ void SpriteSurface::GenerateBuffers() {
 	glBindVertexArray(0); // closes gpu door
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-	spriteShaderProgram = ShaderHandler::GetInstance()->GetShader("GuiShader");
+	spriteShaderProgram = ShaderHandler::GetInstance()->GetShader("spriteColourShader");
 
-	// get unifrom loc
-	colourLoc = glGetUniformLocation(spriteShaderProgram, "colour");
-	modelLoc = glGetUniformLocation(spriteShaderProgram, "model"); // SPELLING!
+	// get unifrom loc...SPELLING!
+	colourLoc = glGetUniformLocation(spriteShaderProgram, "tintColour");
+	modelLoc = glGetUniformLocation(spriteShaderProgram, "model"); 
 	viewLoc = glGetUniformLocation(spriteShaderProgram, "view");
 	projLoc = glGetUniformLocation(spriteShaderProgram, "proj");
 	textureLoc = glGetUniformLocation(spriteShaderProgram, "inputTexture");

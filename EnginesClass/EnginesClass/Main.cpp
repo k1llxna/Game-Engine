@@ -5,7 +5,7 @@ int main(int argc, char* argv[]) {
 
 	CoreEngine::GetInstance()->SetGameInterface(new Game1); // game interface instance
 
-	if (!CoreEngine::GetInstance()->OnCreate("GAME258 Engine", 800, 600)) { // game engine instance
+	if (!CoreEngine::GetInstance()->OnCreate("GAME258 Engine", 1200, 780)) { // game engine instance
 		std::cout << "Engine failed to be created" << std::endl;
 		return 0;
 	}

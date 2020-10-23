@@ -128,25 +128,19 @@ void CoreEngine::Exit() {
 	isRunning = false;
 }
 
-void CoreEngine::NotifyOfMousePressed(glm::vec2 mouse_)
-{
-	
-}
+void CoreEngine::NotifyOfMousePressed(glm::vec2 mouse_){}
 
-void CoreEngine::NotifyOfMouseReleased(glm::vec2 mouse_, int buttonType_)
-{
+void CoreEngine::NotifyOfMouseReleased(glm::vec2 mouse_, int buttonType_) {
 	CollisionHandler::GetInstance()->MouseUpdate(mouse_, buttonType_);
 }
 
-void CoreEngine::NotifyOfMouseMove(glm::vec2 mouse_)
-{
+void CoreEngine::NotifyOfMouseMove(glm::vec2 mouse_) {
 	if (camera) {
 		camera->ProcessMouseMovement(MouseEventListener::GetMouseOffset());
 	}
 }
 
-void CoreEngine::NotifyOfMouseScroll(int y_)
-{
+void CoreEngine::NotifyOfMouseScroll(int y_) {
 	if (camera) {
 		camera->ProcessMouseZoom(y_);
 	}
