@@ -102,7 +102,8 @@ void AudioHandler::LoadSound(std::string s_, bool ifLoop_, bool is3D_, bool howP
 
 	FMOD::Sound* sound = nullptr;
 
-	fmodSystem->createSound(s_.c_str(), mode, nullptr, &sound);
+	std::string path = "./Resources/AudioClips/" + s_;
+	fmodSystem->createSound(path.c_str(), mode, nullptr, &sound);
 	soundMap.emplace(s_, sound);
 }
 

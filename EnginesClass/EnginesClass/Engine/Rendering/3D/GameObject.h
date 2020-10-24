@@ -29,9 +29,9 @@ public:
 
 	BoundingBox GetBoundingBox();
 
-	template<typename A, typename Args>
-	void AddComponent(Args&&) { // std::forward<Args>(args_)
-		A* t = new A();
+	template<typename A, typename ... Args>
+	void AddComponent(Args&& ... args_) {
+		A* t = new A(std::forward<Args>(args_)...);
 		Debug::Info("Instance created", "GameObject.cpp", __LINE__);
 		if (dynamic_cast<Component*>(t)) { // new obj is child of component base class
 			if (GetComponent<A>()) { // check if component type already exists

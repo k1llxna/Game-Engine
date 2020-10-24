@@ -63,6 +63,11 @@ bool CollisionDetection::RayObbIntersection(Ray* ray_, BoundingBox* box_)
 			return false;
 		}
 	}
+	ray_->intersectionDistance = tMin; // beginning of ray to collisionn
+	return true;
+}
+
+/*
 
 	// y
 	//glm::vec3 yAxis((box_->transform[1].x, box_->transform[1].y, box_->transform[1].z));
@@ -131,6 +136,4 @@ bool CollisionDetection::RayObbIntersection(Ray* ray_, BoundingBox* box_)
 	//	}
 	//}
 
-	ray_->intersectionDistance = tMin; // beginning of ray to collisionn
-	return true;
-}
+*/

@@ -47,6 +47,9 @@ void CollisionHandler::MouseUpdate(glm::vec2 mousePosition_, int buttonType_)
 		// call gameobjects hit
 		if (hitResult) {
 			hitResult->SetHit(true, buttonType_);
+			if (hitResult->GetComponent<AudioSource>() != nullptr) {
+				hitResult->GetComponent<AudioSource>()->PlaySound(1);
+			}
 		}
 
 		for (auto c : prevCollisions) {

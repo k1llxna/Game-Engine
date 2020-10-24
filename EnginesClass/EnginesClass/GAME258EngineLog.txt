@@ -1,4 +1,6 @@
 [INFO]: Creating Start Scene in: StartScene.cpp on line: 10
 [INFO]: Everything worked! in: CoreEngine.cpp on line: 52
-[INFO]: Creating Game Scene in: GameScene.cpp on line: 12
+[INFO]: Creating Game Scene in: GameScene.cpp on line: 15
+[INFO]: Instance created in: GameObject.cpp on line: 35
+[INFO]: Added component in: GameObject.cpp on line: 46
 [INFO]: Added component in: GuiObject.cpp on line: 27

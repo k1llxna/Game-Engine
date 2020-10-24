@@ -20,10 +20,10 @@ void AudioSource::Update(float DeltaTime_) {
     }
 }
 
-bool AudioSource::isPlaying() {
+bool AudioSource::IsPlaying() {
     return AudioHandler::GetInstance()->IsPlaying(channelID);
 }
 
-void AudioSource::playSound(float volume_) {
+void AudioSource::PlaySound(float volume_) {
     channelID = AudioHandler::GetInstance()->PlaySound(audioName, go->GetPosition(), glm::vec3(), volume_);
 }

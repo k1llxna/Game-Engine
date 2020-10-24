@@ -205,6 +205,9 @@
   <ItemGroup>
     <Image Include="Resources\Textures\db.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="Resources\AudioClips\MEHOYMINOYME.mp3" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

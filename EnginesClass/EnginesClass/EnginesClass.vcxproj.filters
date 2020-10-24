@@ -226,4 +226,7 @@
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="Resources\AudioClips\MEHOYMINOYME.mp3" />
+  </ItemGroup>
 </Project>

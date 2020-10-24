@@ -4,6 +4,7 @@
 #include "Ray.h"
 #include "../Rendering/3D/GameObject.h"
 #include "../Math/OctSpacialPartition.h"
+#include "../Audio/AudioSource.h"
 
 class CollisionHandler
 {

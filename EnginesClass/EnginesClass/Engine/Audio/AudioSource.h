@@ -8,15 +8,15 @@
 
 class AudioSource : public Component
 {
+public:
     AudioSource(std::string soundName_, bool loopSound_, bool is3D_, bool howPlay_);
     ~AudioSource();
 
-    AudioSource();
     virtual bool OnCreate(class GameObject* parent_) override;
-    virtual void Update(float DeltaTime_) override;
+    virtual void Update(float deltaTime_) override;
 
-    bool isPlaying();
-    void playSound(float volume);
+    bool IsPlaying();
+    void PlaySound(float volume);
 
 private:
     int channelID;
