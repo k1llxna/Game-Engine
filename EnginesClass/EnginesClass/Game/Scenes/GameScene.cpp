@@ -22,8 +22,8 @@ bool GameScene::OnCreate() {
 	// Audio
 	AudioHandler::GetInstance()->Init(CoreEngine::GetInstance()->GetCamera()->GetPosition(), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, -1.0f),glm::vec3(0.0f, 1.0f, 0.0f));
 
+	CollisionHandler::GetInstance()->OnCreate(100.0f); // world size
 
-	CollisionHandler::GetInstance()->OnCreate(100.0f);
 	Model* model1 = new Model("./Resources/Models/Apple.obj","./Resources/Materials/Apple.mtl" , ShaderHandler::GetInstance()->GetShader("basicShader"));
 	SceneGraph::GetInstance()->AddModel(model1);
 
@@ -33,7 +33,7 @@ bool GameScene::OnCreate() {
 	dice->SetPosition(glm::vec3(-5.0f, -2.0f, 0.0f));
 
 	GameObject* apple = new GameObject(model1, glm::vec3(3.0f, -2.0f, 0.0f)); // alternative loading
-	apple->SetScale(glm::vec3(0.3f));
+	apple->SetScale(glm::vec3(1.0f));
 	SceneGraph::GetInstance()->AddGameObject(apple, "Apple");
 	//apple->AddComponent<Component>();
 	apple->AddComponent<AudioSource>("MEHOYMINOYME.mp3", false, false, true);

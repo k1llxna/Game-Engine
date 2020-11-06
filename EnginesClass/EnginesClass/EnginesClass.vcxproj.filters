@@ -105,6 +105,12 @@
     <ClCompile Include="Engine\Audio\AudioSource.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Rendering\3D\Particle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Rendering\3D\Emitter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Core\Window.h">
@@ -212,6 +218,12 @@
     <ClInclude Include="Engine\Audio\AudioSource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Rendering\3D\Particle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Rendering\3D\Emitter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\Shaders\ColourVertexShader.glsl" />
@@ -220,6 +232,8 @@
     <None Include="Engine\Shaders\VertexShader.glsl" />
     <None Include="Engine\Shaders\SpriteFragShader.glsl" />
     <None Include="Engine\Shaders\SpriteVertShader.glsl" />
+    <None Include="Engine\Shaders\ParticleFragmentShader.glsl" />
+    <None Include="Engine\Shaders\ParticleVertexShader.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\db.png">

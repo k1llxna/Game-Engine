@@ -3,7 +3,6 @@
 #include "../Core/CoreEngine.h"
 
 CollisionDetection::~CollisionDetection() {}
-
 Ray CollisionDetection::ScreenPosToWorldRay(glm::vec2 mouseCoords_, glm::vec2 screenSize_, Camera* camera_)
 {
 	glm::vec4 rayStart_NDC((mouseCoords_.x / screenSize_.x - 0.5f) * 2.0f, (mouseCoords_.y / screenSize_.y - 0.5f) * 2.0f, -1.0f, 1.0f);
@@ -41,6 +40,70 @@ bool CollisionDetection::RayObbIntersection(Ray* ray_, BoundingBox* box_)
 		float t1 = (e + box_->minVert.x) / f;
 		float t2 = (e + box_->maxVert.x) / f;
 
+		if (t1 > t2) { // swap values if t1 is greater (t2 always has to be greater) / wrong order	
+			float w = t1; t1 = t2; t2 = w; //std::swap(t1, t2);
+		}
+
+		if (t2 < tMax) { // tmax is NEAREST FAR interse
+			tMax = t2;
+		}
+
+		if (t1 > tMin) { // furthest NEAR
+			tMin = t1;
+		}
+
+		if (tMax < tMin) {
+			return false;
+		}
+		else { // when rays are almost parallel
+			if (-e + box_->minVert.x > 0.0f || -e + box_->maxVert.x < 0.0f) { // x
+				return false;
+			}
+		}
+	}
+
+	// y
+	glm::vec3 yAxis((box_->transform[1].x, box_->transform[1].y, box_->transform[1].z));
+	e = glm::dot(yAxis, delta);
+	f = glm::dot(ray_->direction, yAxis);
+
+	if (fabs(f) > 0.001f) {
+		// left intersec check
+		float t1 = (e + box_->minVert.y) / f;
+		float t2 = (e + box_->maxVert.y) / f;
+
+		if (t1 > t2) { // swap values if t1 is greater (t2 always has to be greater)
+			float w = t1; t1 = t2; t2 = w;
+		}
+
+		if (t2 < tMax) { // tmax is NEAREST FAR interse
+			tMax = t2;
+		}
+
+		if (t1 > tMin) { // furthest NEAR
+			tMin = t1;
+		}
+
+		if (tMax < tMin) {
+			return false;
+		}
+		else { // when rays are almost parallel
+			if (-e + box_->minVert.y > 0.0f || -e + box_->maxVert.y < 0.0f) { // y
+				return false;
+			}
+		}
+	}
+	
+	// z
+	glm::vec3 zAxis((box_->transform[2].x, box_->transform[2].y, box_->transform[2].z));
+	e = glm::dot(zAxis, delta);
+	f = glm::dot(ray_->direction, zAxis);
+
+	if (fabs(f) > 0.001f) {
+		// left intersec check
+		float t1 = (e + box_->minVert.z) / f;
+		float t2 = (e + box_->maxVert.z) / f;
+
 		if (t1 > t2) { // swap values if t1 is greater (t2 always has to be greater)
 			//std::swap(t1, t2);
 			float w = t1; t1 = t2; t2 = w;
@@ -51,7 +114,7 @@ bool CollisionDetection::RayObbIntersection(Ray* ray_, BoundingBox* box_)
 		}
 
 		if (t1 > tMin) { // furthest NEAR
-			tMin = 1;
+			tMin = t1;
 		}
 
 		if (tMax < tMin) {
@@ -59,81 +122,10 @@ bool CollisionDetection::RayObbIntersection(Ray* ray_, BoundingBox* box_)
 		}
 	}
 	else { // when rays are almost parallel
-		if (-e + box_->minVert.x < 0.0f || -e + box_->maxVert.x < 0.0f) { // x
+		if (-e + box_->minVert.z > 0.0f || -e + box_->maxVert.z < 0.0f) { // z
 			return false;
 		}
 	}
 	ray_->intersectionDistance = tMin; // beginning of ray to collisionn
 	return true;
 }
-
-/*
-
-	// y
-	//glm::vec3 yAxis((box_->transform[1].x, box_->transform[1].y, box_->transform[1].z));
-	//e = glm::dot(yAxis, delta);
-	//f = glm::dot(ray_->direction, yAxis);
-
-	//if (fabs(f) > 0.001f) {
-	//	// left intersec check
-	//	float t1 = (e + box_->minVert.y) / f;
-	//	float t2 = (e + box_->maxVert.y) / f;
-
-	//	if (t1 > t2) { // swap values if t1 is greater (t2 always has to be greater)
-	//		//std::swap(t1, t2);
-	//		float w = t1; t1 = t2; t2 = w;
-	//	}
-
-	//	if (t2 < tMax) { // tmax is NEAREST FAR interse
-	//		tMax = t2;
-	//	}
-
-	//	if (t1 > tMin) { // furthest NEAR
-	//		tMin = 1;
-	//	}
-
-	//	if (tMax < tMin) {
-	//		return false;
-	//	}
-	//}
-
-	//else { // when rays are almost parallel
-	//	if (-e + box_->minVert.y < 0.0f || -e + box_->maxVert.y < 0.0f) { // y
-	//		return false;
-	//	}
-	//}
-
-	//// z
-	//glm::vec3 zAxis((box_->transform[2].x, box_->transform[2].y, box_->transform[2].z));
-	//e = glm::dot(zAxis, delta);
-	//f = glm::dot(ray_->direction, zAxis);
-
-	//if (fabs(f) > 0.001f) {
-	//	// left intersec check
-	//	float t1 = (e + box_->minVert.z) / f;
-	//	float t2 = (e + box_->maxVert.z) / f;
-
-	//	if (t1 > t2) { // swap values if t1 is greater (t2 always has to be greater)
-	//		//std::swap(t1, t2);
-	//		float w = t1; t1 = t2; t2 = w;
-	//	}
-
-	//	if (t2 < tMax) { // tmax is NEAREST FAR interse
-	//		tMax = t2;
-	//	}
-
-	//	if (t1 > tMin) { // furthest NEAR
-	//		tMin = 1;
-	//	}
-
-	//	if (tMax < tMin) {
-	//		return false;
-	//	}
-	//}
-	//else { // when rays are almost parallel
-	//	if (-e + box_->minVert.z < 0.0f || -e + box_->maxVert.z < 0.0f) { // z
-	//		return false;
-	//	}
-	//}
-
-*/

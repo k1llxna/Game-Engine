@@ -122,4 +122,3 @@ BoundingBox GameObject::GetBoundingBox()
 {
 	return box;
 }
-

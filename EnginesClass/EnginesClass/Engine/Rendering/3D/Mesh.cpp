@@ -21,7 +21,6 @@ Mesh::~Mesh()
 }
 
 void Mesh::Render(Camera* camera_, std::vector<glm::mat4> instances_) {
-
 	// set uniforms
 	glUniform1i(textureLoc, 0); // in theory more than 1 text on same object (texturedUnit)
 	glActiveTexture(GL_TEXTURE0); // swith texture
@@ -49,7 +48,7 @@ void Mesh::Render(Camera* camera_, std::vector<glm::mat4> instances_) {
 	}
 
 	//elements includes indecies | not always supported
-	glBindVertexArray(0); // shuts 
+	glBindVertexArray(0); // shut down
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
 

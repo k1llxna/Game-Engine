@@ -107,7 +107,6 @@ BoundingBox* OctNode::GetBoundingBox() const
 	return octBounds;
 }
 
-
 OctSpacialPartition::OctSpacialPartition(float worldSize_) : root(nullptr), rayIntersectionList(std::vector<OctNode*>())
 {
 	root = new OctNode(glm::vec3(-(worldSize_ / 2.0f)), worldSize_, nullptr); // ex worldsize = 100 then cubes will range -50 to +50
@@ -172,25 +171,25 @@ GameObject* OctSpacialPartition::GetCollision(Ray ray_)
 
 void OctSpacialPartition::AddObjectToCell(OctNode* cell_, GameObject* obj_)
 { // check obj intersect w cell -> if leaf node then add, else go all children find which is the leaf
-	if (cell_) {
-
+	if (cell_ != nullptr) {
 		if (cell_->GetBoundingBox()->Intersects(&obj_->GetBoundingBox())) {
 			if (cell_->IsLeaf()) {
 				cell_->AddCollisionObject(obj_);
+				std::cout << obj_->GetTag() << " was added to cell" << std::endl;
 			}
 			else {
-				for (int i = 0; i < 8; i++) {
-					cell_->GetChild(static_cast<OctChildren>(i))->AddCollisionObject(obj_); //
-					std::cout << obj_->GetTag() << " was added" << std::endl; // check
+				for (int i = 0; i < 8; i++) { //  cell_->GetChildCount()
+					cell_->GetChild(static_cast<OctChildren>(i))->AddCollisionObject(obj_);
+					std::cout << obj_->GetTag() << " was added to cell" << std::endl;
 				}
 			}
-		}				
+		}	
 	}
 }
 
 void OctSpacialPartition::PrepareCollisionQuery(OctNode* cell_, Ray ray_)
 { // go through all cells, look for leaf
-	if (cell_) { // != nullptr
+	if (cell_ != nullptr) { // != nullptr
 		BoundingBox* currentCell = cell_->GetBoundingBox();
 		
 		// check if ray collids w octnode bounding box

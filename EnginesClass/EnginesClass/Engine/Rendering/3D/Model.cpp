@@ -91,7 +91,7 @@ glm::mat4 Model::GetTransform(glm::vec3 position_, float angle_, glm::vec3 rotat
 	glm::mat4 model;
 	model = glm::translate(model, position_);
 	model = glm::rotate(model, angle, rotation_);
-	model = glm::translate(model, scale_);
+	model = glm::scale(model, scale_);
 	return model;
 }
 

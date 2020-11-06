@@ -126,6 +126,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Rendering\3D\Emitter.cpp" />
     <ClCompile Include="Engine\Audio\AudioSource.cpp" />
     <ClCompile Include="Engine\Audio\AudioHandler.cpp" />
     <ClCompile Include="Engine\Math\CollisionHandler.cpp" />
@@ -156,8 +157,10 @@
     <ClCompile Include="Engine\Graphics\MaterialHandler.cpp" />
     <ClCompile Include="Engine\Math\OctSpacialPartition.cpp" />
     <ClCompile Include="Engine\Rendering\2D\SpriteSurface.cpp" />
+    <ClCompile Include="Engine\Rendering\3D\Particle.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Rendering\3D\Emitter.h" />
     <ClInclude Include="Engine\Audio\AudioSource.h" />
     <ClInclude Include="Engine\Audio\AudioHandler.h" />
     <ClInclude Include="Engine\Core\Component.h" />
@@ -193,11 +196,14 @@
     <ClInclude Include="Engine\Rendering\2D\SpriteSurface.h" />
     <ClInclude Include="Engine\Rendering\2D\GUIComponent.h" />
     <ClInclude Include="Engine\Rendering\2D\GUIImageComponent.h" />
+    <ClInclude Include="Engine\Rendering\3D\Particle.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\Shaders\ColourFragmentShader.glsl" />
     <None Include="Engine\Shaders\ColourVertexShader.glsl" />
     <None Include="Engine\Shaders\FragmentShader.glsl" />
+    <None Include="Engine\Shaders\ParticleFragmentShader.glsl" />
+    <None Include="Engine\Shaders\ParticleVertexShader.glsl" />
     <None Include="Engine\Shaders\VertexShader.glsl" />
     <None Include="Engine\Shaders\SpriteFragShader.glsl" />
     <None Include="Engine\Shaders\SpriteVertShader.glsl" />

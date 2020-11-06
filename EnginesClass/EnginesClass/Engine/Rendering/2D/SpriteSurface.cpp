@@ -40,7 +40,7 @@ void SpriteSurface::Draw(Camera* cam_, glm::vec2 pos_) {
 
 	// create own matrix
 	glm::mat4 model;
-	model = glm::translate(model, glm::vec3(position.x, pos_.y, 0));
+	model = glm::translate(model, glm::vec3(position.x, position.y, 0));
 	model = glm::rotate(model, angle, glm::vec3(0.0f, 0.0f, 1.0f));
 	model = glm::scale(model, glm::vec3(width * imageScale.x, height * imageScale.y, 1.0f));
 
