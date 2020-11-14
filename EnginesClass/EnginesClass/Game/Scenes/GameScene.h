@@ -2,8 +2,6 @@
 #define GAMESCENE_H
 
 #include "../../Engine/Core/CoreEngine.h"
-#include "../../Engine/Graphics/ShaderHandler.h"
-#include "../../Engine/Graphics/TextureHandler.h"
 #include <glm/gtx/string_cast.hpp>
 
 class GameScene : public Scene {

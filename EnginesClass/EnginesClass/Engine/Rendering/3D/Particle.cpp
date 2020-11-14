@@ -1,4 +1,5 @@
 #include "Particle.h"
+#include "../../Camera/Camera.h"
 
 Particle::Particle(GLuint shaderProgram_, GLuint textureID_) : VAO(0), VBO(0), modelLoc(0), viewLoc(0), projLoc(0), textureLoc(0) { // ID for images
 	shaderProgram = shaderProgram_; // save BEFORE gen buffers
@@ -6,16 +7,12 @@ Particle::Particle(GLuint shaderProgram_, GLuint textureID_) : VAO(0), VBO(0), m
 }
 
 Particle::~Particle() {
-	//glDeleteVertexArrays(1, &VAO); // &address from non pointers
-	//glDeleteBuffers(1, &VBO);
+	glDeleteVertexArrays(1, &VAO); // &address from non pointers
+	glDeleteBuffers(1, &VBO);
 
-	//if (subMesh.vertexList.size() > 0) {
-	//	subMesh.vertexList.clear();
-	//}
-
-	//if (subMesh.meshIndices.size() > 0) {
-	//	subMesh.meshIndices.clear();
-	//}
+	if (vertexList.size() > 0) {
+		vertexList.clear();
+	}
 }
 
 void Particle::Render(Camera* camera_) { // view matrice, model, coolour, texture
@@ -30,16 +27,20 @@ void Particle::Render(Camera* camera_) { // view matrice, model, coolour, textur
 
 	// create own matrix
 	glm::mat4 model;
-	glm::vec4 distance = camera_->GetView() * model * glm::vec4(pos, 1.0f);
-	glm::vec4 attenuation = distance * glm::inversesqrt(0.1f);
 	model = glm::translate(model, glm::vec3(pos.x, pos.y, 0));
-	model = glm::rotate(model, angle, glm::vec3(0.0f, 0.0f, 1.0f));
-	model = glm::scale(model, glm::vec3(size * attenuation));
+	//model = glm::rotate(model, angle, glm::vec3(0.0f, 0.0f, 1.0f));
+	//glm::vec4 distance = camera_->GetView() * model * glm::vec4(pos, 1.0f);
+	//glm::vec4 attenuation = distance * glm::inversesqrt(0.1f); // can do in v shader
+	//model = glm::scale(model, glm::vec3(size * attenuation));
 
 	// location, quantity, transpose, gl ptr(transform)
 	//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(transform_)); // make sure its mat4
 	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 	glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(camera_->GetPerspective()));
+
+	glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(camera_->GetView()));
+	glUniform1f(sizeLoc, size);
+	glUniform3f(colourLoc, 1.0f, 0.0f, 0.0f); // red
 
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE); // addivtive blending
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // real transparency
@@ -75,5 +76,6 @@ void Particle::GenerateBuffers() {
 	viewLoc = glGetUniformLocation(shaderProgram, "view");
 	projLoc = glGetUniformLocation(shaderProgram, "proj");
 	textureLoc = glGetUniformLocation(shaderProgram, "inputTexture");
-	colourLoc = glGetUniformLocation(shaderProgram, "tintColour");
+	colourLoc = glGetUniformLocation(shaderProgram, "Colour");
+	sizeLoc = glGetUniformLocation(shaderProgram, "size");
 }

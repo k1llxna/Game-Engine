@@ -6,25 +6,18 @@
 #include <optional>
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
-#include "../../Camera/Camera.h"
-
-class Emitter;
 
 struct Vertex {
 	glm::vec3 position;
 	glm::vec2 texCoords;
-	Vertex(glm::vec3 pos_, glm::vec2 textureCoords_) : position(pos_), texCoords(textureCoords_){
-	/*	position = pos_;
-		texCoords = textureCoords_;*/
-	}
+	Vertex(glm::vec3 pos_, glm::vec2 textureCoords_) : position(pos_), texCoords(textureCoords_) {}
 };
-
 
 class Particle {
 public:
 	Particle(GLuint shaderProgram_, GLuint textureID_); // leave out texture id if no image assosiaction
 	~Particle();
-	void Render(Camera* camera_);
+	void Render(class Camera* camera_);
 
 	glm::vec3 GetPos() {
 		return pos;
@@ -72,6 +65,6 @@ private:
 	GLuint shaderProgram;
 	GLuint modelLoc, viewLoc, projLoc, textureLoc, colourLoc;
 	GLuint viewPosition;
-	GLuint lightPositionLoc, lightAmbientLoc, lightDiffuseLoc, lightColourLoc; // !
+	GLuint sizeLoc; // !
 };
 #endif

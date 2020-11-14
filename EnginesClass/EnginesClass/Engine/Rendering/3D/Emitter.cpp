@@ -1,4 +1,8 @@
 #include "Emitter.h"
+#include "../../Camera/Camera.h"
+#include "../../Graphics/ShaderHandler.h"
+#include "../../Graphics/TextureHandler.h"
+#include "Particle.h"
 
 Emitter::Emitter(int particles_, std::string shaderProgram_) : particleCount(particles_) { // no texture
 	ShaderHandler::GetInstance()->CreateProgram(parVertexName, parShaderProgramName, parFragName);
@@ -25,12 +29,13 @@ Emitter::Emitter(int particles_, std::string shaderProgram_) : particleCount(par
 }
 
 Emitter::~Emitter() {
-
+	for (auto i : particleList) {
+		i->~Particle();
+	}
 }
 
 void Emitter::Update(Camera* cam_,const float deltaTime_) {
-	for (auto i : particleList)
-	{
+	for (auto i : particleList) {
 		float newLifeTime = i->GetLifetime();
 		newLifeTime - deltaTime_;
 		if (newLifeTime <= 0) { // kill or reset

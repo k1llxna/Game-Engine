@@ -13,6 +13,7 @@
 #include "../Camera/Camera.h"
 #include "../Event/EventListener.h"
 #include "../Rendering/SceneGraph.h"
+#include "../../Engine/Rendering/3D/Emitter.h"
 
 class CoreEngine {
 public:

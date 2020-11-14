@@ -1,4 +1,3 @@
-
 #include "GameScene.h"
 #include "../../Engine/Rendering/2D/GUIImageComponent.h"
 #include "../../Engine/Audio/AudioHandler.h"
@@ -21,7 +20,7 @@ bool GameScene::OnCreate() {
 	
 	// Audio
 	AudioHandler::GetInstance()->Init(CoreEngine::GetInstance()->GetCamera()->GetPosition(), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, -1.0f),glm::vec3(0.0f, 1.0f, 0.0f));
-
+	
 	CollisionHandler::GetInstance()->OnCreate(100.0f); // world size
 
 	Model* model1 = new Model("./Resources/Models/Apple.obj","./Resources/Materials/Apple.mtl" , ShaderHandler::GetInstance()->GetShader("basicShader"));
@@ -38,6 +37,7 @@ bool GameScene::OnCreate() {
 	//apple->AddComponent<Component>();
 	apple->AddComponent<AudioSource>("MEHOYMINOYME.mp3", false, false, true);
 
+	//Emitter* emitter = new Emitter(10, "Emitter Shader");
 
 	// gui
 	GuiObject* guiObj = new GuiObject(glm::vec2(CoreEngine::GetInstance()->GetWindowSize().x / 2.0f, CoreEngine::GetInstance()->GetWindowSize().y / 2.0f));
@@ -47,7 +47,6 @@ bool GameScene::OnCreate() {
 	SceneGraph::GetInstance()->AddGuiObject(guiObj, "GuiShader");
 	// , glm::vec2(1.0f,1.0f), glm::vec2(1.0f,1.0f), 0.0f, glm::vec4(1.0f,1.0f,1.0f,1.0f)
 	
-
 	return true;
 }
 
@@ -57,7 +56,6 @@ void GameScene::Update(const float deltaTime_) {
 }
 
 void GameScene::Render() {
-	// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	SceneGraph::GetInstance()->Render(CoreEngine::GetInstance()->GetCamera());
 }
 
