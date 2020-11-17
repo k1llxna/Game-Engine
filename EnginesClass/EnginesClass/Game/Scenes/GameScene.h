@@ -6,6 +6,7 @@
 
 class GameScene : public Scene {
 public:
+
 	GameScene();
 	virtual ~GameScene();
 
@@ -13,5 +14,8 @@ public:
 	virtual void Update(const float deltaTime_);
 	virtual void Render();
 	virtual void Draw();
+
+private:
+	Emitter* emitter;
 };
 #endif

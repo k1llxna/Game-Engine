@@ -3,6 +3,7 @@
 #include "../../Engine/Audio/AudioHandler.h"
 
 
+
 GameScene::GameScene() : Scene() {}
 
 GameScene::~GameScene()
@@ -37,7 +38,8 @@ bool GameScene::OnCreate() {
 	//apple->AddComponent<Component>();
 	apple->AddComponent<AudioSource>("MEHOYMINOYME.mp3", false, false, true);
 
-	//Emitter* emitter = new Emitter(10, "Emitter Shader");
+	 emitter = new Emitter(10, "Emitter Shader");
+	
 
 	// gui
 	GuiObject* guiObj = new GuiObject(glm::vec2(CoreEngine::GetInstance()->GetWindowSize().x / 2.0f, CoreEngine::GetInstance()->GetWindowSize().y / 2.0f));
@@ -53,10 +55,13 @@ bool GameScene::OnCreate() {
 void GameScene::Update(const float deltaTime_) {
 	// std::cout << deltaTime_ << std::endl;
 	SceneGraph::GetInstance()->Update(deltaTime_);
+	
+	emitter->Update(deltaTime_);
 }
 
 void GameScene::Render() {
 	SceneGraph::GetInstance()->Render(CoreEngine::GetInstance()->GetCamera());
+	emitter->Render(CoreEngine::GetInstance()->GetCamera());
 }
 
 void GameScene::Draw() {

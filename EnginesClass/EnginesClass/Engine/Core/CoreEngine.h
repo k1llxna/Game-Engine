@@ -38,7 +38,6 @@ public:
 	void SetCamera(Camera* camera_);
 	void Exit();
 
-	// mouse
 	void NotifyOfMousePressed(glm::vec2 mouse_);
 	void NotifyOfMouseReleased(glm::vec2 mouse_, int buttonType_);
 	void NotifyOfMouseMove(glm::vec2 mouse_);
@@ -54,16 +53,13 @@ private:
 	void Update(const float deltaTime_);
 	void Render();
 	void OnDestroy();
-	Window* window;
 	bool isRunning;
 
 	Timer timer;
-	unsigned int fps;
-
-	GameInterface* gameInterface;
-
-	int currentSceneNum;
-
+	Window* window;
 	Camera* camera;
+	GameInterface* gameInterface;
+	unsigned int fps;
+	int currentSceneNum;
 };
 #endif

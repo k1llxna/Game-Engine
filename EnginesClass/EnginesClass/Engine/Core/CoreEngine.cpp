@@ -80,7 +80,7 @@ void CoreEngine::Update(const float deltaTime_) {
 
 void CoreEngine::Render() {
 	// add background color
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glClearColor(1.0f, 0.0f, 1.0f, 0.5f);
 
 	// clear buffer bits gets rid of artifacts (previous renders)
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -101,10 +101,8 @@ void CoreEngine::OnDestroy() { // delete calls destructor, setting nullptr remov
 
 	delete camera;
 	camera = nullptr;
-
 	delete gameInterface;
 	gameInterface = nullptr;
-
 	delete window;
 	window = nullptr;
 

@@ -10,6 +10,7 @@ class GameObject
 public:
 	GameObject(Model* model_, glm::vec3 position_ = glm::vec3()); // can pass nullptr for empty gameObj
 	~GameObject();
+
 	void Render(Camera* camera_);
 	void Update(float deltaTime_);
 
@@ -89,6 +90,7 @@ private:
 	bool hit;
 
 	std::vector<Component*> objects;
+	std::vector<GameObject*> delayedUObjects;
 	
 };
 #endif

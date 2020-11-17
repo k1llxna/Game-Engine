@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Core\Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -109,6 +106,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Rendering\3D\Emitter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Rendering\3D\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -224,6 +224,9 @@
     <ClInclude Include="Engine\Rendering\3D\Emitter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Resources\rapidxml.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\Shaders\ColourVertexShader.glsl" />
@@ -242,5 +245,8 @@
   </ItemGroup>
   <ItemGroup>
     <Media Include="Resources\AudioClips\MEHOYMINOYME.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Engine\Info.xml" />
   </ItemGroup>
 </Project>

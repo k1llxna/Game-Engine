@@ -27,7 +27,7 @@ GameObject::~GameObject()
 
 void GameObject::Render(Camera* camera_) {
 	if (model) { // if model exists
-model->Render(camera_);
+		model->Render(camera_);
 	}
 }
 

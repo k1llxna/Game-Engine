@@ -34,7 +34,7 @@ Emitter::~Emitter() {
 	}
 }
 
-void Emitter::Update(Camera* cam_,const float deltaTime_) {
+void Emitter::Update(const float deltaTime_) {
 	for (auto i : particleList) {
 		float newLifeTime = i->GetLifetime();
 		newLifeTime - deltaTime_;
@@ -47,9 +47,18 @@ void Emitter::Update(Camera* cam_,const float deltaTime_) {
 			glm::vec3 newPos = i->GetPos();
 			newPos += newVel * deltaTime_;
 			i->SetPos(newPos);
-			i->Render(cam_);
+			//i->Render(cam_);
 		}
 	}
+}
+
+void Emitter::Render(Camera* cam_) {
+	glEnable(GL_BLEND);
+	glUseProgram(particleShader);
+	for (auto i : particleList) {
+		i->Render(cam_);
+	}
+	glDisable(GL_BLEND);
 }
 
 void Emitter::ParticleLife(Particle* particle_) { // staggered values
