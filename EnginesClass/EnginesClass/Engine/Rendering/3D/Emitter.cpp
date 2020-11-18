@@ -1,21 +1,21 @@
 #include "Emitter.h"
 #include "../../Camera/Camera.h"
 #include "../../Graphics/ShaderHandler.h"
-#include "../../Graphics/TextureHandler.h"
 #include "Particle.h"
 
-Emitter::Emitter(int particles_, std::string shaderProgram_) : particleCount(particles_) { // no texture
-	ShaderHandler::GetInstance()->CreateProgram(parVertexName, parShaderProgramName, parFragName);
-	TextureHandler::GetInstance()->CreateTexture("", ""); // change
-	particleShader = ShaderHandler::GetInstance()->GetShader("ParticleShader");
-	textureID = TextureHandler::GetInstance()->GetTexture("ParticleTexture"); // ?
-	if (textureID == 0 || particleShader == 0) {
+Emitter::Emitter(int particles_)  { // no texture
+	
+	particleShader = ShaderHandler::GetInstance()->GetShader("particleShader");
+	
+	if (particleShader == 0) {
 		Debug::Error("failed to load particles", "Emitter.cpp", __LINE__);
 	}
+
 	else {
-		particleList.reserve(particleCount);
-		for (int i = 0; i < particleCount; i++) {
-			Particle* newParticle = new Particle(particleShader, textureID);
+		//particleList.reserve(particleCount);
+		for (int i = 0; i < particles_; i++) {
+			Particle* newParticle = new Particle(particleShader);
+			//scotts lib OPTIONAL
 			float x = rand() % 10 + 1;
 			float y = rand() % 10 + 1;
 			float z = rand() % 10 + 1;
@@ -28,16 +28,12 @@ Emitter::Emitter(int particles_, std::string shaderProgram_) : particleCount(par
 	}
 }
 
-Emitter::~Emitter() {
-	for (auto i : particleList) {
-		i->~Particle();
-	}
-}
+Emitter::~Emitter() {}
 
 void Emitter::Update(const float deltaTime_) {
 	for (auto i : particleList) {
 		float newLifeTime = i->GetLifetime();
-		newLifeTime - deltaTime_;
+		newLifeTime -= deltaTime_; //-= decrement
 		if (newLifeTime <= 0) { // kill or reset
 			ParticleLife(i);
 		}
@@ -47,7 +43,6 @@ void Emitter::Update(const float deltaTime_) {
 			glm::vec3 newPos = i->GetPos();
 			newPos += newVel * deltaTime_;
 			i->SetPos(newPos);
-			//i->Render(cam_);
 		}
 	}
 }

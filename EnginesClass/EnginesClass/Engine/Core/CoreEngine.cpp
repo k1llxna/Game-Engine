@@ -39,6 +39,9 @@ bool CoreEngine::OnCreate(std::string name_, int width_, int height_) {
 	// GUI shader (for 2D objects)
 	ShaderHandler::GetInstance()->CreateProgram("spriteColourShader", "Engine/Shaders/SpriteVertShader.glsl", "Engine/Shaders/SpriteFragShader.glsl");
 
+	// emitter
+	ShaderHandler::GetInstance()->CreateProgram("particleShader", "Engine/Shaders/ParticleVertexShader.glsl", "Engine/Shaders/ParticleFragmentShader.glsl");
+
 	// create interface, make sure it has been set
 	if (gameInterface) { // gameInterface != nullptr // because its a ptr
 		if (!gameInterface->OnCreate()) {
@@ -49,7 +52,7 @@ bool CoreEngine::OnCreate(std::string name_, int width_, int height_) {
 
 	timer.Start();
 
-	Debug::Info("Everything worked!", "CoreEngine.cpp", __LINE__); // __FILE__ uses FULL path, __LINE__ returns current line
+	Debug::Info("Everything worked!", "CoreEngine.cpp", __LINE__); 
 	return isRunning = true;
 }
 

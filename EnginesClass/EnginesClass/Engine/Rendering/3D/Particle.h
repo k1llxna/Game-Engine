@@ -15,7 +15,7 @@ struct Vertex {
 
 class Particle {
 public:
-	Particle(GLuint shaderProgram_, GLuint textureID_); // leave out texture id if no image assosiaction
+	Particle(GLuint shaderProgram_); // leave out texture id if no image assosiaction
 	~Particle();
 	void Render(class Camera* camera_);
 
@@ -50,6 +50,8 @@ public:
 	void SetLifetime(float lifeTime_) {
 		lifeTime_ = lifeTime;
 	}
+
+	void Update(const float deltaTime_);
 
 private:
 	void GenerateBuffers();

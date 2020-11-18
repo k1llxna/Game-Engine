@@ -14,20 +14,20 @@ class Particle;
 
 class Emitter { // public Component
 public:
-	Emitter(int particles_, std::string shaderProgram_);
+	Emitter(int particles_);
 	~Emitter();
 
 	void Update(const float deltaTime_); // combined w render, for component inheritence
 	void Render(class Camera* cam_);
 	void ParticleLife(Particle* particle_);
 
-	const std::string parVertexName, parFragName;
+	//const std::string parVertexName, parFragName;
 
 private:
 	std::vector<Particle*> particleList;
-	int particleCount;
-	std::string parNameTexture;
-	const std::string parShaderProgramName;
-	GLuint particleShader, textureID;
+	//int particleCount;
+	//std::string parNameTexture;
+	//const std::string parShaderProgramName;
+	GLuint particleShader;
 };
 #endif

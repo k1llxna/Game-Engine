@@ -21,7 +21,10 @@ bool GameScene::OnCreate() {
 	
 	// Audio
 	AudioHandler::GetInstance()->Init(CoreEngine::GetInstance()->GetCamera()->GetPosition(), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, -1.0f),glm::vec3(0.0f, 1.0f, 0.0f));
-	
+
+	// Emitter
+	emitter = new Emitter(100);
+
 	CollisionHandler::GetInstance()->OnCreate(100.0f); // world size
 
 	Model* model1 = new Model("./Resources/Models/Apple.obj","./Resources/Materials/Apple.mtl" , ShaderHandler::GetInstance()->GetShader("basicShader"));
@@ -37,9 +40,6 @@ bool GameScene::OnCreate() {
 	SceneGraph::GetInstance()->AddGameObject(apple, "Apple");
 	//apple->AddComponent<Component>();
 	apple->AddComponent<AudioSource>("MEHOYMINOYME.mp3", false, false, true);
-
-	 emitter = new Emitter(10, "Emitter Shader");
-	
 
 	// gui
 	GuiObject* guiObj = new GuiObject(glm::vec2(CoreEngine::GetInstance()->GetWindowSize().x / 2.0f, CoreEngine::GetInstance()->GetWindowSize().y / 2.0f));
@@ -65,7 +65,7 @@ void GameScene::Render() {
 }
 
 void GameScene::Draw() {
-	SceneGraph::GetInstance()->Draw(CoreEngine::GetInstance()->GetCamera());
+//	SceneGraph::GetInstance()->Draw(CoreEngine::GetInstance()->GetCamera());
 }
 
 // old models
